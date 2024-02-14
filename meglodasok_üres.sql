@@ -27,3 +27,15 @@ GROUP BY meresek.ev
 ORDER BY meresek.ev DESC
 
 -- 6. feladat:
+SELECT
+  meresek.ev,
+  regiok.regioNev AS terulet,
+  MIN(meresek.perc) AS expr1
+FROM meresek
+  INNER JOIN regiok
+    ON meresek.regioId = regiok.id
+WHERE meresek.ho = 2
+AND meresek.perc >= 6000
+GROUP BY meresek.ev,
+         regiok.regioNev
+ORDER BY expr1 DESC
