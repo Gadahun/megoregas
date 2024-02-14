@@ -15,6 +15,15 @@ SELECT
 FROM meresek
 
 -- 5. feladat:
-
+SELECT
+  meresek.ev,
+  SUM(meresek.perc / 60) AS orak
+FROM meresek
+  INNER JOIN regiok
+    ON meresek.regioId = regiok.id
+WHERE regiok.regioNev LIKE 'Anglia'
+AND meresek.ev BETWEEN 1990 AND 2000
+GROUP BY meresek.ev
+ORDER BY meresek.ev DESC
 
 -- 6. feladat:
